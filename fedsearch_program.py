@@ -1,5 +1,4 @@
-import os
-import fedsearch
+import os,fedsearch
 
 api = fedsearch.api()
 if os.name == 'nt':
