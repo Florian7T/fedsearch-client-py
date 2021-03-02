@@ -39,7 +39,7 @@ while True:
     for result in response:
         c+=1
         try:
-            email, password, ip, token, database = result ['email'], result ['password'], result ['ip'], result ['token'], result ['database']
+            email, password, ip, token, database = result ['email'], result ['password'], result ['ip'], result ['token'], result ['database'] # I know I know..
             print(out_format.replace('{email}',email).replace('{password}',password).replace('{ip}',ip).replace('{token}',token).replace('{database}',database).replace('{num}',str(c)))
         except TypeError:
             print("# 0 results for this Query")
