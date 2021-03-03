@@ -1,4 +1,4 @@
-import os,requests
+import os,requests,datetime
 
 if os.name == 'nt':
     os.system('cls')
@@ -34,6 +34,7 @@ Format options: {email}, {password} or {hash}, {ip}, {token}, {database}, {count
 Format examples:
 # {email} {password}
 # {email}+{password} | {ip} {database}
+# {count}: {email} ___ {hash}
 
 Format => """)
 
@@ -42,16 +43,31 @@ if not check_if_any(out_format):
     print("The program will now exit..")
     exit(0)
 
+out = []
 while True:
     response = search(key, input("Query => "))
-    c=0
+
+    c = 0
     print()
     for result in response:
-        c+=1
+        c += 1
         try:
             email, password, ip, token, database = result ['email'], result ['password'], result ['ip'], result ['token'], result ['database']
-            print(out_format.replace('{email}',email).replace('{password}',password).replace('{ip}',ip).replace('{token}',token).replace('{database}',database).replace('{count}',str(c)).replace('{hash}',password))
+            o = out_format.replace('{email}', email).replace('{password}', password).replace('{ip}', ip).replace('{token}', token).replace('{database}', database).replace('{count}', str(c)).replace('{hash}',password)
+            print(o)
+            out.append(o)
         except TypeError:
             print("# 0 results for this Query")
             break
     print()
+    print("Writing to logfile..")
+    fn = str(datetime.datetime.now()).replace(' ','_').replace(':','_')
+    fn = fn[:fn.find('.')]+'.txt'
+    with open(os.path.dirname(os.path.realpath(__file__))+'\\'+fn,'w+') as f:
+        for x in out:
+            f.write(x.replace('\ufffd','')+"\n")
+        f.flush()
+        f.close()
+    print(f"Output saved to: \'{fn}\'")
+    print()
+
