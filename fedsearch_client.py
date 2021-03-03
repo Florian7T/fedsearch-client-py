@@ -7,7 +7,7 @@ else:
 
 
 print("Welcome to fedsearch!")
-key = input("Key => ")
+key = input("Key ~> ")
 if len(requests.post('https://fedsearch.cf/API/search_api.php',data={'search': 'monkey', 'submit': '', 'key': key, }).json()) == 2: # using this until proper method is available
     print("Invalid key! The program will now exit..")
     exit(0)
@@ -21,7 +21,7 @@ Format examples:
 # {email}+{password} | {ip} {database}
 # {count}: {email} ___ {hash}
 
-Format => """)
+Format ~> """)
 #thanks a lot man. I usually code in java I've only recently started using python for smaller things like this
 format_options = ['{email}', '{password}', '{hash}', '{ip}', '{token}', '{database}', '{count}']
 if not any(x in out_format for x in format_options):
@@ -32,7 +32,7 @@ if not any(x in out_format for x in format_options):
 
 while True:
     out = []
-    query = input("Query => ")
+    query = input('Query ~> ')
     response = requests.post('https://fedsearch.cf/API/search_api.php',data={'search': query, 'submit': '', 'key': key, }).json()
 
     print()
