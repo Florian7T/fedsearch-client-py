@@ -6,7 +6,7 @@ else:
     os.system('clear')
 
 def check_if_any(x:str)-> bool:
-    if x.find('{email}') !=-1 or x.find('{password}') !=-1 or x.find('{email}') !=-1 or x.find('{token}') !=-1 or x.find('{ip}') !=-1  or x.find('{database}') !=-1 or x.find('{hash}') !=-1 or x.find('{num}') !=-1:
+    if x.find('{email}') !=-1 or x.find('{password}') !=-1 or x.find('{email}') !=-1 or x.find('{token}') !=-1 or x.find('{ip}') !=-1  or x.find('{database}') !=-1 or x.find('{hash}') !=-1 or x.find('{count}') !=-1:
         return True
     return False
 
@@ -30,7 +30,7 @@ else:
     print("Valid key!")
 
 out_format = input("""
-Format options: {email}, {password} or {hash}, {ip}, {token}, {database}, {num}
+Format options: {email}, {password} or {hash}, {ip}, {token}, {database}, {count}
 Format examples:
 # {email} {password}
 # {email}+{password} | {ip} {database}
@@ -50,7 +50,7 @@ while True:
         c+=1
         try:
             email, password, ip, token, database = result ['email'], result ['password'], result ['ip'], result ['token'], result ['database']
-            print(out_format.replace('{email}',email).replace('{password}',password).replace('{ip}',ip).replace('{token}',token).replace('{database}',database).replace('{num}',str(c)).replace('{hash}',password))
+            print(out_format.replace('{email}',email).replace('{password}',password).replace('{ip}',ip).replace('{token}',token).replace('{database}',database).replace('{count}',str(c)).replace('{hash}',password))
         except TypeError:
             print("# 0 results for this Query")
             break
