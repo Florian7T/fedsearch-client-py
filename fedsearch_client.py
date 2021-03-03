@@ -47,7 +47,7 @@ while True:
         out.append(opp)
     print()
     print("Writing to logfile..")
-    fn = str(datetime.datetime.now().strftime("%S_%M_%H-%d_%m_%y"))+'.txt'
+    fn = str(datetime.datetime.now().strftime("%H_%M_%S-%d_%m_%y"))+'.txt'
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),fn),'w+') as f:
         for out_ in out:
             f.write(out_.replace('\ufffd','')+"\n")
